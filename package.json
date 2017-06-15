@@ -1,0 +1,32 @@
+{
+  "name": "botbusters",
+  "description": "API for detecting bots.",
+  "version": "0.0.1",
+  "author": "Andy Jiang <andyjiang@gmail.com> (http://www.andyjiang.com/)",
+  "main": "./index.js",
+  "scripts": {
+    "start": "micro"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:lambtron/botbusters-api.git"
+  },
+  "engines": {
+    "node": "^7.6.x",
+    "npm": "^4.1.x"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lambtron/botbusters-api/issues"
+  },
+  "homepage": "https://github.com/lambtron/botbusters-api",
+  "private": false,
+  "dependencies": {
+    "micro": "^7.3.3",
+    "microrouter": "^2.1.1",
+    "mongoose": "^4.10.6",
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.4",
+    "twitter": "^1.7.1"
+  }
+}
