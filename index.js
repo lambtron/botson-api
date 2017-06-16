@@ -23,6 +23,7 @@ const index = (req, res) =>
 const get_score = async (req, res) => {
   const body = await json(req)
   if (!body || !body.user_id || !body.screen_name) send(res, 200, 'Invalid user')
+  body.user_id = '' + body.user_id
   const account = await db_account.get(body.user_id)
   let score = account
   if (!account) {
