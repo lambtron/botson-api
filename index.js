@@ -3,6 +3,7 @@
  * Module dependencies.
  */
 
+require('dotenv').config()
 const { router, get, post } = require('microrouter')
 const db_account = require('./lib/db-account')
 const botometer = require('./lib/botometer')
