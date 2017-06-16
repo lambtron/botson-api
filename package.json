@@ -22,6 +22,7 @@
   "homepage": "https://github.com/lambtron/botbusters-api",
   "private": false,
   "dependencies": {
+    "dotenv": "^4.0.0",
     "micro": "^7.3.3",
     "microrouter": "^2.1.1",
     "mongoose": "^4.10.6",
