@@ -22,14 +22,16 @@ const index = (req, res) =>
  */
 
 const get_score = async (req, res) => {
+  if (!req.headers['x-twitter-oauth-token'] || !req.headers['x-twitter-oauth-secret']) send(res, 200, 'Twitter not authenticated')
+  const auth = { oauth_token: req.headers['x-twitter-oauth-token'], oauth_token_secret: req.headers['x-twitter-oauth-secret'] }
   const body = await json(req)
   if (!body || !body.user_id || !body.screen_name) send(res, 200, 'Invalid user')
   body.user_id = '' + body.user_id
   const account = await db_account.get(body.user_id)
   let score = account
   if (!account) {
-    const tweets = await twitter.get_tweets(body.user_id)
-    const mentions = await twitter.get_mentions(body.screen_name)
+    const tweets = await twitter.get_tweets(body.user_id, auth)
+    const mentions = await twitter.get_mentions(body.screen_name, auth)
     const botometer_res = await botometer.check_account({ id: body.user_id, screen_name: body.screen_name }, tweets, mentions)
     score = await db_account.upsert(body.user_id, { user_id: body.user_id, screen_name: body.screen_name, categories: botometer_res.categories, scores: botometer_res.scores })
   }
