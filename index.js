@@ -18,6 +18,13 @@ const index = (req, res) =>
   send(res, 200, 'Hello, world')
 
 /**
+ * Auth.
+ */
+
+const auth = (req, res) =>
+  send(res, 200, 'Authorized.')
+
+/**
  * Get score for user id and screen name.
  */
 
@@ -44,5 +51,6 @@ const get_score = async (req, res) => {
 
 module.exports = router(
   post('/api/', get_score),
+  get('/auth/', auth),
   get('/', index)
 )
