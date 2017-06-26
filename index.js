@@ -39,7 +39,7 @@ const get_score = async (req, res) => {
   const body = await json(req)
   if (!body || !body.user_id || !body.screen_name) send(res, 400, 'Invalid user')
   body.user_id = '' + body.user_id
-  analytics.track({ userId: hex_sha1(body.user_id), event: 'Account Checked' })
+  if (req.headers['x-twitter-user-id']) analytics.track({ userId: hex_sha1(req.headers['x-twitter-user-id']), event: 'Account Checked' })
   const account = await db_account.get(body.user_id)
   let score = account
   try {
