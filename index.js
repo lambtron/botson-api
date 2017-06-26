@@ -9,6 +9,8 @@ const db_account = require('./lib/db-account')
 const botometer = require('./lib/botometer')
 const twitter = require('./lib/twitter')
 const { send, json } = require('micro')
+const Raven = require('raven');
+Raven.config(process.env.SENTRY_SECRET_URL, { captureUnhandledRejections: true }).install();
 
 /**
  * Index.
