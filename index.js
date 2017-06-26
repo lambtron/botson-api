@@ -10,7 +10,6 @@ const botometer = require('./lib/botometer')
 const twitter = require('./lib/twitter')
 const { send, json } = require('micro')
 const Raven = require('raven')
-const hex_sha1 = require('./lib/sha1.js').hex_sha1
 const Analytics = require('analytics-node')
 const analytics = new Analytics('aO23Wx83MZQnaPWyRvxffagdSm9I302w')
 Raven.config(process.env.SENTRY_SECRET_URL, { captureUnhandledRejections: true }).install();
@@ -39,7 +38,7 @@ const get_score = async (req, res) => {
   const body = await json(req)
   if (!body || !body.user_id || !body.screen_name) send(res, 400, 'Invalid user')
   body.user_id = '' + body.user_id
-  if (req.headers['x-twitter-user-id']) analytics.track({ userId: hex_sha1(req.headers['x-twitter-user-id']), event: 'Account Checked' })
+  if (req.headers['x-twitter-user-id']) analytics.track({ userId: req.headers['x-twitter-user-id'], event: 'Account Checked' })
   const account = await db_account.get(body.user_id)
   let score = account
   try {
