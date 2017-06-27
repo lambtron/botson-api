@@ -1,4 +1,4 @@
-# Botbusters API
+# Botson API
 
 Server for the [botson extension](http://botson.net). [Source code](https://github.com/lambtron/botson-extension) for botson extension.
 
